@@ -1,3 +1,6 @@
 curl -LO https://raw.githubusercontent.com/Porashsingh/Configure-Service-Accounts-and-IAM-Roles-for-Google-Cloud/refs/heads/main/porash.sh
 sudo chmod +x porash.sh
 ./porash.sh
+
+
+curl -sSL https://raw.githubusercontent.com/<your-username>/<your-repo>/main/deploy_vm.sh | bash
