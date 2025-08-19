@@ -1,3 +1,3 @@
-curl -LO https://raw.githubusercontent.com/Itsabhishek7py/GoogleCloudSkillsboost/refs/heads/main/Configure%20Service%20Accounts%20and%20IAM%20for%20Google%20Cloud%3A%20Challenge%20Lab/abhishek.sh
-sudo chmod +x abhishek.sh
-./abhishek.sh
+curl -LO https://raw.githubusercontent.com/Porashsingh/Configure-Service-Accounts-and-IAM-Roles-for-Google-Cloud/refs/heads/main/porash.sh
+sudo chmod +x porash.sh
+./porash.sh
