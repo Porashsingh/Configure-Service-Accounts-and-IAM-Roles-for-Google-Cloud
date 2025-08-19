@@ -1,33 +1,25 @@
 #!/bin/bash
-set -e
 
-# ========================
-# CONFIGURATION VARIABLES
-# ========================
-PROJECT_ID=$(gcloud config get-value project)
-ZONE="europe-west4-c"
+# Variables
 INSTANCE_NAME="bigquery-instance"
-MACHINE_TYPE="n1-standard-1"
+ZONE="europe-west4-c"
+MACHINE_TYPE="e2-medium"
 IMAGE_FAMILY="debian-11"
 IMAGE_PROJECT="debian-cloud"
-DISK_NAME="bigquery-disk"
-DISK_SIZE="10GB"
+BOOT_DISK_NAME="bigquery-disk"
 
-echo "🚀 Using Project: $PROJECT_ID"
-echo "🚀 Zone: $ZONE"
+echo "🚀 Creating VM instance: $INSTANCE_NAME in $ZONE..."
 
-# ========================
-# CREATE VM INSTANCE
-# ========================
-echo "🚀 Creating a VM instance named '${INSTANCE_NAME}' in zone ${ZONE}..."
+gcloud compute instances create $INSTANCE_NAME \
+  --zone=$ZONE \
+  --machine-type=$MACHINE_TYPE \
+  --image-family=$IMAGE_FAMILY \
+  --image-project=$IMAGE_PROJECT \
+  --boot-disk-device-name=$BOOT_DISK_NAME \
+  --boot-disk-size=20GB
 
-gcloud compute instances create "$INSTANCE_NAME" \
-    --project="$PROJECT_ID" \
-    --zone="$ZONE" \
-    --machine-type="$MACHINE_TYPE" \
-    --image-family="$IMAGE_FAMILY" \
-    --image-project="$IMAGE_PROJECT" \
-    --boot-disk-size="$DISK_SIZE" \
-    --boot-disk-name="$DISK_NAME"
-
-echo "✅ VM '${INSTANCE_NAME}' created successfully in zone ${ZONE}."
+if [ $? -eq 0 ]; then
+  echo "✅ VM instance '$INSTANCE_NAME' created successfully in zone $ZONE"
+else
+  echo "❌ Failed to create VM instance. Please check the error above."
+fi
